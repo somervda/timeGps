@@ -53,8 +53,8 @@ while carryOn:
                                 # Write the Longitude, latitude to a file
                                 gps = {
                                     "timestamp" :str(msg.datetime),
-                                    "longitude": msg.latitude,
-                                    "latitude": msg.longitude,
+                                    "latitude": msg.latitude,
+                                    "longitude": msg.longitude,
                                 }
                                 with open(directory_path + "/gps.json", "w", encoding="utf-8") as f:
                                     json.dump(gps, f, indent=4) # indent for pretty printing
