@@ -1,16 +1,16 @@
 from mcp.server.fastmcp import FastMCP
-from datetime import datetime
+from datetime import datetime,timezone
 from timezonefinder import TimezoneFinder
 import pytz
 
 # Create MCP server
-mcp = FastMCP("time-server")
+mcp = FastMCP("time-server",port=8102,host="0.0.0.0")
 
 # Tool: return current UTC time
 @mcp.tool()
 def get_UTC_time() -> str:
     """Return the current UTC time as an ISO 8601 string."""
-    return datetime.utcnow().replace(tzinfo=pytz.utc).isoformat()
+    return datetime.now(timezone.utc).replace(tzinfo=pytz.utc).isoformat()
 
 # Tool: return local time by latitude & longitude
 @mcp.tool()
@@ -26,10 +26,10 @@ def get_local_time_by_location(latitude: float, longitude: float) -> str:
         raise ValueError("Could not determine timezone for given coordinates")
 
     tz = pytz.timezone(tz_name)
-    utc_now = datetime.utcnow().replace(tzinfo=pytz.utc)
+    utc_now = datetime.now(timezone.utc).replace(tzinfo=pytz.utc)
     local_time = utc_now.astimezone(tz)
     return local_time.isoformat()
 
 # Run server
 if __name__ == "__main__":
-    mcp.run()
+    mcp.run(transport="streamable-http")
