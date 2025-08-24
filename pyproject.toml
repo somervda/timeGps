@@ -8,4 +8,6 @@ dependencies = [
     "mcp[cli]>=1.13.1",
     "pynmea2>=1.19.0",
     "pyserial>=3.5",
+    "pytz>=2025.2",
+    "timezonefinder>=8.0.0",
 ]
