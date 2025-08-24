@@ -1,0 +1,7 @@
+name: GPS service
+version: 0.0.1
+schema: v1
+mcpServers:
+  - name: GPS
+    type: streamable-http
+    url: http://piai:8101/mcp

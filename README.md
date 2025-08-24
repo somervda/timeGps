@@ -32,3 +32,12 @@ copy mcpTime.service to /etc/systemd/system
 - sudo systemctl start mcpTime.service
 
 - sudo systemctl status mcpTime.service
+
+### mcpGPS
+copy mcpGPS.service to /etc/systemd/system
+
+- sudo systemctl daemon-reload          # Reload systemd to recognize the new service file
+- sudo systemctl enable mcpGPS.service  # Enable the service to start on boot
+- sudo systemctl start mcpGPS.service
+
+- sudo systemctl status mcpGPS.service
