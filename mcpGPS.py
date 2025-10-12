@@ -24,15 +24,16 @@ elif not os.path.isdir(directory_path):
 # Tool: return location as latitude and longitude
 @mcp.tool()
 def get_location() -> str:
-    """Return the current location as  latitude and longitude."""
+    """Return the current location as latitude and longitude. Timestamp is included 
+       for information on when the location was last determined."""
     try:
         file_name = directory_path + "/gps.json"
         with open(file_name, "r") as f:
             data = json.load(f)
         
         # Extract values
-        latitude = data.get("latitude")
-        longitude = data.get("longitude")
+        latitude = round(data.get("latitude"),5)
+        longitude = round(data.get("longitude"),5)
         # altitude = data.get("altitude")
         timestamp = data.get("timestamp")
 
